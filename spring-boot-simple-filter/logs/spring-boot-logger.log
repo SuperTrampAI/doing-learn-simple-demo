@@ -1,0 +1,28 @@
+2019-08-04 15:42:58,157 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting SpringBootSimpleFilterApplication on LAPTOP-OJ5FBDTM with PID 15892 (D:\githubfile\doing-learn-simple-demo\spring-boot-simple-filter\target\classes started by lxh95 in D:\githubfile\doing-learn-simple-demo\spring-boot-simple-filter)
+2019-08-04 15:42:58,158 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2019-08-04 15:42:58,597 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-08-04 15:42:58,617 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 20ms. Found 1 repository interfaces.
+2019-08-04 15:42:58,715 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [restartedMain] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$c54e4c00] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-08-04 15:42:58,862 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2019-08-04 15:42:58,864 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2019-08-04 15:42:58,864 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-04 15:42:58,901 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2019-08-04 15:42:58,902 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 741 ms
+2019-08-04 15:42:58,925 INFO org.springframework.boot.web.servlet.DynamicRegistrationBean [restartedMain] Filter requestResponseLoggingFilter was not registered (possibly already registered?)
+2019-08-04 15:42:58,973 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-2 - Starting...
+2019-08-04 15:42:58,977 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-2 - Start completed.
+2019-08-04 15:42:58,986 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-08-04 15:42:58,994 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2019-08-04 15:42:59,144 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-08-04 15:42:59,179 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2019-08-04 15:42:59,292 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [restartedMain] Initializing ExecutorService 'applicationTaskExecutor'
+2019-08-04 15:42:59,298 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-08-04 15:42:59,413 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2019-08-04 15:42:59,414 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started SpringBootSimpleFilterApplication in 1.391 seconds (JVM running for 50.184)
+2019-08-04 15:42:59,420 INFO org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener [restartedMain] Condition evaluation unchanged
+2019-08-04 15:44:30,189 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [Thread-27] Shutting down ExecutorService 'applicationTaskExecutor'
+2019-08-04 15:44:30,190 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [Thread-27] Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-08-04 15:44:30,192 INFO com.zaxxer.hikari.HikariDataSource [Thread-27] HikariPool-2 - Shutdown initiated...
+2019-08-04 15:44:30,204 INFO com.zaxxer.hikari.HikariDataSource [Thread-27] HikariPool-2 - Shutdown completed.
