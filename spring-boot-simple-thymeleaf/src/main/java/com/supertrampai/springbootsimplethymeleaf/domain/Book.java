@@ -1,8 +1,9 @@
-package com.supertrampai.springbootsimplejpa.domain;
+package com.supertrampai.springbootsimplethymeleaf.domain;
 
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -29,6 +30,7 @@ public class Book implements Serializable {
     private Integer uid;
     private String publish;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date publishdate;
     private Integer page;
     private Integer price;

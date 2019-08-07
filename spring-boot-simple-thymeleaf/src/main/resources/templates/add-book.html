@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>add book</title>
+</head>
+<body>
+<form action="#" th:action="@{/books/addbook}" th:object="${book}" method="post">
+    <label for="bname">bname</label>
+    <input type="text" th:field="*{bname}" id="bname" placeholder="bname">
+    <span th:if="${#fields.hasErrors('bname')}" th:errors="*{bname}"></span>
+
+    <label for="uid">uid</label>
+    <input type="number" th:field="*{uid}" id="uid" placeholder="uid">
+    <span th:if="${#fields.hasErrors('uid')}" th:errors="*{uid}"></span>
+
+    <label for="publish">publish</label>
+    <input type="text" th:field="*{publish}" id="publish" placeholder="publish">
+    <span th:if="${#fields.hasErrors('publish')}" th:errors="*{publish}"></span>
+
+    <label for="publishdate">publishdate</label>
+    <input type="date" th:field="*{publishdate}" id="publishdate" placeholder="publishdate">
+    <span th:if="${#fields.hasErrors('publishdate')}" th:errors="*{publishdate}"></span>
+
+    <label for="page">page</label>
+    <input type="number" th:field="*{page}" id="page" placeholder="page">
+    <span th:if="${#fields.hasErrors('page')}" th:errors="*{page}"></span>
+
+    <label for="price">price</label>
+    <input type="number" th:field="*{price}" id="price" placeholder="price">
+    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+
+    <label for="content">content</label>
+    <input type="text" th:field="*{content}" id="content" placeholder="content">
+    <span th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></span>
+
+    <input type="submit" value="Add Book">
+</form>
+</body>
+</html>
