@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.supertrampai.springbootsimplemybatis.mapper.BookMapperXML" >
+    <resultMap id="BaseResultMap" type="com.supertrampai.springbootsimplemybatis.domain.Book" >
+        <id column="bid" property="bid" jdbcType="BIGINT" />
+        <result column="bid" property="bid" jdbcType="VARCHAR" />
+        <result column="bname" property="bname" jdbcType="VARCHAR" />
+        <result column="uid" property="uid" javaType="Integer"/>
+        <result column="publish" property="publish" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        bid, bname, uid, publish, publishdate
+    </sql>
+
+    <select id="getAll" resultMap="BaseResultMap"  >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM book
+    </select>
+
+    <select id="getOne" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM book
+        WHERE bid = #{bid}
+    </select>
+
+    <insert id="insert" parameterType="com.supertrampai.springbootsimplemybatis.domain.Book" >
+       INSERT INTO
+       		book
+       		(bname,uid,publish,publishdate,page,price,content)
+       	VALUES
+       		(#{bname},#{uid},#{publish},#{publishdate},#{page},#{price},#{content})
+    </insert>
+
+    <insert id="insertList" useGeneratedKeys="true"
+            keyProperty="bid">
+        INSERT INTO
+        book
+        (bname,uid,publish,publishdate,page,price,content)
+        values
+        <foreach collection ="books" item="item" separator=",">
+            (#{item.bname}, #{item.uid}, #{item.publish}, #{item.publishdate}, #{item.page}, #{item.price}, #{item.content})
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.supertrampai.springbootsimplemybatis.domain.Book" >
+        UPDATE
+        book
+        SET
+        <if test="bid != null">bid = #{bid},</if>
+        <if test="bname != null">bname = #{bname},</if>
+        uid = #{uid}
+        WHERE
+        bid = #{bid}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Integer" >
+       DELETE FROM
+       		 book
+       WHERE
+       		 bid =#{bid}
+    </delete>
+
+    <!-- 动态sql -->
+    <sql id="userColumns"> ${alias}.id,${alias}.username,${alias}.password </sql>
+
+    <select id="selectUsers" resultType="map">
+        select
+        <include refid="userColumns"><property name="alias" value="t1"/></include>,
+        <include refid="userColumns"><property name="alias" value="t2"/></include>
+        from some_table t1
+        cross join some_table t2
+    </select>
+
+    <insert id="insertUser" parameterType="User">
+      insert into users (id, username, password)
+      values (#{id}, #{username}, #{password})
+    </insert>
+
+    <!--#{property,javaType=int,jdbcType=NUMERIC}-->
+
+    <!--
+        #{} 占位符 安全地设置参数 做更安全，更迅速，通常也是首选做法
+        ${} ORDER BY ${columnName}
+    -->
+
+</mapper>
