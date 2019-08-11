@@ -6,36 +6,63 @@
     <title>update-book</title>
 </head>
 <body>
+
+
 <form action="#" th:action="@{/books/update/{bid}(bid=${book.bid})}" th:object="${book}" method="post">
-        <label for="bname">bname</label>
-    <input type="text" th:field="*{bname}" id="bname" placeholder="bname">
-    <span th:if="${#fields.hasErrors('bname')}" th:errors="*{bname}"></span>
+    <div class="form-group">
+        <label for="bname">bname</label>
+        <input type="text" class="form-control" th:field="*{bname}" id="bname" aria-describedby="bnameHelp" placeholder="Enter bname">
+        <small id="bnameHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <span th:if="${#fields.hasErrors('bname')}" th:errors="*{bname}"></span>
+    </div>
 
-    <label for="uid">uid</label>
-    <input type="text" th:field="*{uid}" id="uid" placeholder="uid">
-    <span th:if="${#fields.hasErrors('uid')}" th:errors="*{uid}"></span>
+    <div class="form-group">
+        <label for="uid">uid</label>
+        <input type="text" class="form-control" th:field="*{uid}" id="uid" aria-describedby="uidHelp" placeholder="Enter uid">
+        <small id="uidHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <span th:if="${#fields.hasErrors('uid')}" th:errors="*{uid}"></span>
+    </div>
 
-    <label for="publish">publish</label>
-    <input type="text" th:field="*{publish}" id="publish" placeholder="publish">
-    <span th:if="${#fields.hasErrors('publish')}" th:errors="*{publish}"></span>
+    <div class="form-group">
+        <label for="publish">publish</label>
+        <input type="text" class="form-control" th:field="*{publish}" id="publish" aria-describedby="publishHelp" placeholder="Enter publish">
+        <small id="publishHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <span th:if="${#fields.hasErrors('publish')}" th:errors="*{publish}"></span>
+    </div>
 
-    <label for="publishdate">publishdate</label>
-    <input type="text" th:field="*{publishdate}" id="publishdate" placeholder="publishdate">
-    <span th:if="${#fields.hasErrors('publishdate')}" th:errors="*{publishdate}"></span>
+    <div class="form-group">
+        <label for="publishdate">publishdate</label>
+        <input type="date" class="form-control" th:field="*{publishdate}" id="publishdate" aria-describedby="publishdateHelp" placeholder="Enter publishdate">
+        <small id="publishdateHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <span th:if="${#fields.hasErrors('publishdate')}" th:errors="*{publishdate}"></span>
+    </div>
 
-    <label for="page">page</label>
-    <input type="text" th:field="*{page}" id="page" placeholder="page">
-    <span th:if="${#fields.hasErrors('page')}" th:errors="*{page}"></span>
+    <div class="form-group">
+        <label for="page">page</label>
+        <input type="text" class="form-control" th:field="*{page}" id="page" aria-describedby="pageHelp" placeholder="Enter page">
+        <small id="pageHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <span th:if="${#fields.hasErrors('page')}" th:errors="*{page}"></span>
+    </div>
 
-    <label for="price">price</label>
-    <input type="text" th:field="*{price}" id="price" placeholder="price">
-    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+    <div class="form-group">
+        <label for="price">price</label>
+        <input type="text" class="form-control" th:field="*{price}" id="price" aria-describedby="priceHelp" placeholder="Enter price">
+        <small id="priceHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+    </div>
 
-    <label for="content">content</label>
-    <input type="text" th:field="*{content}" id="content" placeholder="content">
-    <span th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></span>
+    <div class="form-group">
+        <label for="content">content</label>
+        <input type="text" class="form-control" th:field="*{content}" id="content" aria-describedby="contentHelp" placeholder="Enter content">
+        <small id="contentHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <span th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></span>
+    </div>
 
-    <input type="submit" value="Update Book">  
+    <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary"  value="Add Book">Submit</button>
 </form>
 </body>
 </html>

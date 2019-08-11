@@ -26,9 +26,12 @@ public class BookController {
     @Autowired
     private BookRepository bookRepository;
 
-    @GetMapping("/signup")
-    public String showSignUpForm(Book book) {
-        return "add-book";
+    @GetMapping("/index")
+    public String showSignUpForm(Model model) {
+
+        model.addAttribute("books", bookRepository.findAll());
+        return "index";
+        //return "add-book";
     }
 
     @PostMapping("/addbook")

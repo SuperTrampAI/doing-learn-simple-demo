@@ -6,40 +6,52 @@
     <title>add book</title>
 </head>
 <body>
-<div th:switch="${books}">
-        <h2 th:case="null">No books yet!</h2>
-            <div th:case="*">
-                <h2>Books</h2>
-                <table>
-                    <thead>
-                    <tr>
-                            <th>bid</th>
-                            <th>bname</th>
-                            <th>uid</th>
-                            <th>publish</th>
-                             <th>publishdate</th>
-                            <th>page</th>
-                            <th>price</th>
-                            <th>content</th>
-                        </tr>
-                </thead>
-                    <tbody>
-                <tr th:each="book : ${books}">
-                        <td th:text="${book.bid}"></td>
-                        <td th:text="${book.bname}"></td>
-                        <td th:text="${book.uid}"></td>
-                        <td th:text="${book.publish}"></td>
-                        <td th:text="${book.publishdate}"></td>
-                        <td th:text="${book.page}"></td>
-                        <td th:text="${book.price}"></td>
-                        <td th:text="${book.content}"></td>
-                        <td><a th:href="@{/books/edit/{bid}(bid=${book.bid})}">Edit</a></td>
-                        <td><a th:href="@{/books/delete/{bid}(bid=${book.bid})}">Delete</a></td>
-                    </tr>
-            </tbody>
-            </table>
-        </div>
-        <p><a href="/books/signup">Add a new Book</a></p>
-</div>
+    <div class="card-body" th:switch="${books}">
+        <h2 th:case="null">No books yet!</h2>
+        <div th:case="*">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>bid</th>
+                    <th>bname</th>
+                    <th>uid</th>
+                    <th>publish</th>
+                    <th>publishdate</th>
+                    <th>page</th>
+                    <th>price</th>
+                    <th>content</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>bid</th>
+                    <th>bname</th>
+                    <th>uid</th>
+                    <th>publish</th>
+                    <th>publishdate</th>
+                    <th>page</th>
+                    <th>price</th>
+                    <th>content</th>
+                </tr>
+                </tfoot>
+                <tbody>
+                <tr th:each="book : ${books}">
+                    <td th:text="${book.bid}"></td>
+                    <td th:text="${book.bname}"></td>
+                    <td th:text="${book.uid}"></td>
+                    <td th:text="${book.publish}"></td>
+                    <td th:text="${book.publishdate}"></td>
+                    <td th:text="${book.page}"></td>
+                    <td th:text="${book.price}"></td>
+                    <td th:text="${book.content}"></td>
+                    <td><a th:href="@{/books/edit/{bid}(bid=${book.bid})}">Edit</a></td>
+                    <td><a th:href="@{/books/delete/{bid}(bid=${book.bid})}">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+            <p><a href="/books/signup">Add a new Book</a></p>
+    </div>
 </body>
 </html>
