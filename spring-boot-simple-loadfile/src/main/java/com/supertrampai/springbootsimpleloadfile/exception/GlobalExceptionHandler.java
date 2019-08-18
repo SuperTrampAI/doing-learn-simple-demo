@@ -1,0 +1,23 @@
+package com.supertrampai.springbootsimpleloadfile.exception;
+
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.multipart.MultipartException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+/**
+ * @author lxh800109@gmail.com
+ * @Description
+ * @create 2019/08/18 17:40
+ */
+@ControllerAdvice
+public class GlobalExceptionHandler {
+
+    //https://jira.spring.io/browse/SPR-14651
+    //4.3.5 supports RedirectAttributes redirectAttributes
+    @ExceptionHandler(MultipartException.class)
+    public String handleError1(MultipartException e, RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("message", e.getCause().getMessage());
+        return "redirect:/uploadStatus";
+    }
+}
