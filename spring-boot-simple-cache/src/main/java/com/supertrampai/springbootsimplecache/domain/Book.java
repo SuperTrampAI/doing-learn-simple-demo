@@ -7,6 +7,7 @@ package com.supertrampai.springbootsimplecache.domain;
  */
 public class Book    {
 
+    private Integer id;
     private String isbn;
     private String title;
 
@@ -29,6 +30,14 @@ public class Book    {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Override
