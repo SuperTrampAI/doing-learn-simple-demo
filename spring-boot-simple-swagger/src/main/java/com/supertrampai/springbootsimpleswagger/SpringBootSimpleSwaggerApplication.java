@@ -30,11 +30,16 @@ import springfox.documentation.swagger.web.UiConfigurationBuilder;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.google.common.collect.Lists.*;
 import static springfox.documentation.schema.AlternateTypeRules.*;
-
+/**
+ * @Description
+ * @author lxh800109@gmail.com
+ * @create 2019-08-21 20:39
+ */
 @SpringBootApplication
 @EnableSwagger2
 public class SpringBootSimpleSwaggerApplication {
@@ -45,6 +50,12 @@ public class SpringBootSimpleSwaggerApplication {
 
     @Bean
     public Docket petApi() {
+        //添加head参数start
+        ParameterBuilder tokenPar = new ParameterBuilder();
+        List<Parameter> pars = new ArrayList<Parameter>();
+        tokenPar.name("access-token").description("令牌").defaultValue("myd5").modelRef(new ModelRef("string")).parameterType("header").required(false).build();
+        pars.add(tokenPar.build());
+        //添加head参数end
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(getApiInfo())
                 .select()
@@ -68,17 +79,19 @@ public class SpringBootSimpleSwaggerApplication {
                 .securitySchemes(newArrayList(apiKey()))
                 .securityContexts(newArrayList(securityContext()))
                 .enableUrlTemplating(true)
-                .globalOperationParameters(
-                        newArrayList(new ParameterBuilder()
+                .globalOperationParameters(pars)
+                .tags(new Tag("Pet Service", "All apis relating to pets"))
+                //.additionalModels(typeResolver.resolve(AdditionalModel.class))
+                ;
+                /*
+                * .globalOperationParameters(newArrayList(new ParameterBuilder()
                                 .name("someGlobalParameter")
                                 .description("Description of someGlobalParameter")
                                 .modelRef(new ModelRef("string"))
                                 .parameterType("query")
                                 .required(true)
                                 .build()))
-                .tags(new Tag("Pet Service", "All apis relating to pets"))
-                //.additionalModels(typeResolver.resolve(AdditionalModel.class))
-                ;
+                * */
     }
 
     @Autowired
@@ -141,8 +154,11 @@ public class SpringBootSimpleSwaggerApplication {
         Contact contact = new Contact("SuperTrampAI","https://supertrampai.com/","lxh800109@gmail.com");
         return new ApiInfoBuilder()
                 .title("lxh800109@gmail.com - SuperTrampAI接口文档 ")
+                .description("description")
                 .version(DateUtil.NowStr(null))
                 .contact(contact)
+                .license("license")
+                .licenseUrl("licenseUrl")
                 .build();
     }
 

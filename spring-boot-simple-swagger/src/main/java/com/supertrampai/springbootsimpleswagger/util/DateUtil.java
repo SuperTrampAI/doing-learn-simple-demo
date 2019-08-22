@@ -6,6 +6,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+/**
+ * @Description
+ * @author lxh800109@gmail.com
+ * @create 2019-08-21 20:39
+ */
 public class DateUtil {
     private static final String DATE = "yyyy-MM-dd";
     private static final String DATETIME = "yyyy-MM-dd HH:mm:ss";
