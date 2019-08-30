@@ -31,6 +31,7 @@ public class ReactiveBookRepository implements  BookRepository {
     @Override
     public Flux<Book> findAll() {
         //Simulate big list of data, streaming it every 2 second delay
+        // flux 0..N
         return Flux.fromIterable(movie).delayElements(Duration.ofSeconds(2));
     }
 
