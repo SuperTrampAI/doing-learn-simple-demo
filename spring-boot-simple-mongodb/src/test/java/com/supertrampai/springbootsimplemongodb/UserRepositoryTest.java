@@ -32,7 +32,7 @@ public class UserRepositoryTest {
     public void testSaveUser() throws Exception {
         User user=new User();
         user.setId(ObjectId.get());
-        user.setName("name1");
+        user.setName("name5555");
         user.setPassword("123");
         user.setAge(12);
         user.setSex(1);
