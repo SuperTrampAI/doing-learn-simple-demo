@@ -6,3 +6,9 @@ spring:
       exclude: WEB-INF/**
   freemarker:
     cache: false    #页面不加载缓存，修改即时生效
+
+#服务器配置
+server:
+  port: 9393
+  servlet:
+    context-path: /actuatorApp
