@@ -9,13 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.supertrampai</groupId>
-    <artifactId>spring-boot-simple-tomcat</artifactId>
+    <artifactId>spring-boot-simple-socket</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-boot-simple-tomcat</name>
+    <name>spring-boot-simple-socket</name>
     <description>Demo project for Spring Boot</description>
-
-    <!--在这里设置打包类型为pom，作用是为了实现多模块项目-->
-    <packaging>jar</packaging>
 
     <properties>
         <java.version>1.8</java.version>
@@ -34,10 +31,35 @@
         </dependency>
 
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>28.1-jre</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>webjars-locator-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>sockjs-client</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>stomp-websocket</artifactId>
+            <version>2.3.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>3.3.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
 
     </dependencies>
 
@@ -47,31 +69,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-
-            <!--<plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <port>9090</port>
-                    <path>/</path>
-                    <uriEncoding>UTF-8</uriEncoding>
-                    <server>tomcat7</server>
-                    <ignorePackaging>true</ignorePackaging>
-                </configuration>
-            </plugin>-->
-
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <port>8080</port>
-                    <path>/</path>
-                    <ignorePackaging>true</ignorePackaging>
-                </configuration>
-            </plugin>
-
         </plugins>
     </build>
 
