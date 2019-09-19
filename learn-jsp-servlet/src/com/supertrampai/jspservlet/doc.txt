@@ -1,0 +1,7 @@
+1. 在Run -> Edit Configurations，进入“Run Configurations”窗口，选择之前配置好的Tomcat，点击“Deployment”选项卡 该路径下配置访问路径：如 application context: learn_jsp_servlet_war_exploded
+则 访问路径为：http://localhost:8080/learn_jsp_servlet_war_exploded/
+
+
+问题描述：cannot be resolved in either web.xml or the jar files deployed with this application  jstl无法找到
+解决连接：https://stackoverflow.com/questions/4928271/how-to-install-jstl-the-absolute-uri-http-java-sun-com-jstl-core-cannot-be-r
+在Servlet 4.0中，不用显示的引入jstl，默认引入

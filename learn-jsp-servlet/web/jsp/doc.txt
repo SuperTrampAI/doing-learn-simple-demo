@@ -1,0 +1,61 @@
+EL(Expression Language) 主要作用：
+1. 获取数据 2.执行运算 3.获取web开发常用对象 4.调用java方法
+
+el 获取数据的方式：${}
+实例：
+${name}
+${person.age}
+${person.address.name}
+${list[1].name}
+${map.c}
+${map["1"]}
+
+
+执行运算：
+${1==1} or ${1 rq 1}
+${1!=1} or ${1 ne 1}
+${1<1} or ${1 lt 1}
+${1>1} or ${1 gt 1}
+${1<=1} or ${1 le 1}
+${1>=1} or ${1 ge 1}
+
+逻辑运算
+${1 && 1} or ${1 and 1}
+${1 || 1} or ${1 or 1}
+${!1} or ${not 1}
+
+empty运算符：检查对象是否为null(空)： ${!empty(list)}
+
+二元表达式 ${user!=null?user.name :""}
+            ${user==null? "对不起，您没有登陆 " : user.username}
+
+[ ] 和 . 号运算符
+
+
+
+获得web开发常用对象：
+1	pageContext	对应于JSP页面中的pageContext对象（注意：取的是pageContext对象。）  ${pageContext}
+2	pageScope	代表page域中用于保存属性的Map对象  ${pageScope.name}
+3	requestScope	代表request域中用于保存属性的Map对象  ${requestScope.name}
+4	sessionScope	代表session域中用于保存属性的Map对象  ${sessionScope.user}
+5	applicationScope	代表application域中用于保存属性的Map对象  ${applicationScope.user}
+6	param	表示一个保存了所有请求参数的Map对象  ${param.name}
+7	paramValues	表示一个保存了所有请求参数的Map对象，它对于某个请求参数，返回的是一个string[]   ${paramValues.like[0]}
+8	header	表示一个保存了所有http请求头字段的Map对象，注意：如果头里面有“-” ，例Accept-Encoding，则要header[“Accept-Encoding”]   ${header.Accept}   ${header["Accept-Encoding"]}
+9	headerValues	表示一个保存了所有http请求头字段的Map对象，它对于某个请求参数，返回的是一个string[]数组。注意：如果头里面有“-” ，例Accept-Encoding，则要headerValues[“Accept-Encoding”]  ${headerValues.Accept[0]}<br/>
+10	cookie	表示一个保存了所有cookie的Map对象  ${cookie.JSESSIONID.value}  //保存所有cookie的map
+11	initParam	表示一个保存了所有web应用初始化参数的map对象  ${initParam.root}
+    web.xml 文件中的初始化参数
+    <context-param>
+      <param-name>root</param-name>
+      <param-value>/JavaWeb_EL_Study_20140826</param-value>
+    </context-param>
+
+EL调用java方法${prefix：method(params)} 只能是java类的静态方法；需要在TLD文件中描述，
+步骤：
+    1、编写一个Java类的静态方法
+　　2、编写标签库描述符（tld）文件，在tld文件中描述自定义函数。 WEB-INF目录下编写标签库描述符（tld）文件，在tld文件中描述自定义函数
+　　3、在JSP页面中导入和使用自定义函数
+
+
+
