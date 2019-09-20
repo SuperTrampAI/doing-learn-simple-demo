@@ -1,7 +1,7 @@
-EL(Expression Language) 主要作用：
+EL(Expression Language) 主要作用：   （教程：https://www.javatpoint.com/jstl；  https://www.tutorialspoint.com/jsp/jsp_standard_tag_library.htm）
 1. 获取数据 2.执行运算 3.获取web开发常用对象 4.调用java方法
 
-el 获取数据的方式：${}
+el 获取数据的方式：${}  对于有特殊字符的获取方式： ${user["My-Name"] }
 实例：
 ${name}
 ${person.age}
@@ -57,5 +57,45 @@ EL调用java方法${prefix：method(params)} 只能是java类的静态方法；�
 　　2、编写标签库描述符（tld）文件，在tld文件中描述自定义函数。 WEB-INF目录下编写标签库描述符（tld）文件，在tld文件中描述自定义函数
 　　3、在JSP页面中导入和使用自定义函数
 
+迭代标签：
+<c:forEach items=“collection” var=“name” varStatus=“status” begin=“int“
+end=”int” step=“int” >
+    //循环体
+</c:forEach>
+items  集合
+var 变量名
+varStatus 显示循环状态的变量
+index:从0开始
+count:元素位置,从1开始;
+begin:循环的初始值(整型)；
+end: 循环结束 ;
+step:步长,循环间隔的数值；
+
+格式化标签：
+导入   <%@ taglib prefix="fmt" http://java.sun.com/jsp/jstl/fmt">http://java.sun.com/jsp/jstl/fmt" %>
+1）格式化日期<fmt:formatDate value=“” pattern=“yyyy-MM-dd HH:mm:ss”/>
+2) 格式化数字<fmt:formatNumber value="${n}" pattern="###,###.##" />
+
+<c:param>标签  <c:param>标签用来传递参数给一个重定向或包含页面
+<c:redirect url="login.jsp">
+    <c:param name="id" value="888"/>  c:param 可以省略，不带参数的重定向到url中的页面
+</c:redirect>
 
 
+<c:otherwise>标签 （相当于java中的if else）
+<c:choose>
+    <c:when test="">
+        user.generous is true.
+    </c:when>
+    <c:when test="">
+        user.stingy is true.
+    </c:when>
+    <c:otherwise>
+        user.generous and user.stingy are false.
+    </c:otherwise>
+</c:choose>
+
+if标签：
+<c:if test="${var.index % 2 == 0}">
+*
+</c:if>
