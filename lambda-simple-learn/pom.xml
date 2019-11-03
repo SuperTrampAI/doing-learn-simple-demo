@@ -5,13 +5,13 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.8.RELEASE</version>
+        <version>2.1.9.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.supertrampai</groupId>
-    <artifactId>bio-nio-aio-simple-learn</artifactId>
+    <artifactId>lambda-simple-learn</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>bio-nio-aio-simple-learn</name>
+    <name>lambda-simple-learn</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -29,17 +29,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-all</artifactId>
-            <version>4.1.41.Final</version>
-        </dependency>
-
-
-
-
     </dependencies>
 
     <build>

@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.supertrampai</groupId>
-    <artifactId>bio-nio-aio-simple-learn</artifactId>
+    <artifactId>google-protocol-simple-learn</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>bio-nio-aio-simple-learn</name>
+    <name>google-protocol-simple-learn</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -30,14 +30,18 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
+        <!-- https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java -->
+        <!--<dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+            <version>3.6.1</version>
+        </dependency>-->
+
         <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-all</artifactId>
-            <version>4.1.41.Final</version>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+            <version>3.5.0</version>
         </dependency>
-
-
 
 
     </dependencies>
