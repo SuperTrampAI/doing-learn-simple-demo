@@ -38,4 +38,12 @@ public class PeopleNew {
     public void setAge(Integer age) {
         this.age = age;
     }
+
+    @Override
+    public String toString() {
+        return "PeopleNew{" +
+                "age=" + age +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

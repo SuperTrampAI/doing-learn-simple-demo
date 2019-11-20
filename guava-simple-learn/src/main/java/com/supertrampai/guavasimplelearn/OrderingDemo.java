@@ -1,9 +1,16 @@
 package com.supertrampai.guavasimplelearn;
 
+import com.google.common.base.Function;
+import com.google.common.base.Objects;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Ordering;
 import com.google.common.primitives.Ints;
+import javafx.concurrent.Worker;
+import org.checkerframework.checker.nullness.qual.Nullable;
+import org.springframework.core.annotation.Order;
 
-import java.util.Comparator;
+import java.util.*;
+import java.util.logging.Logger;
 
 /**
  * @author: LiXiangHong
@@ -25,7 +32,7 @@ public class OrderingDemo {
         Ordering ordering2 = Ordering.from(new Comparator<PeopleNew>() {
             @Override
             public int compare(PeopleNew o1, PeopleNew o2) {
-                return 0;
+                return o1.getAge()-o2.getAge();
             }
         });
 
@@ -36,8 +43,50 @@ public class OrderingDemo {
             }
         };
 
+        List<PeopleNew> peopleNewList=new ArrayList<PeopleNew>();
+
+        PeopleNew peopleNew1=new PeopleNew(23,"name1");
+        PeopleNew peopleNew2=new PeopleNew(13,"name2");
+        PeopleNew peopleNew3=new PeopleNew(43,"name3");
+        peopleNewList.add(peopleNew1);
+        peopleNewList.add(peopleNew2);
+        peopleNewList.add(peopleNew3);
+
+        //在调用natural排序以后，调用reverse，则按照规则反向排序
+        Ordering<PeopleNew>    peopleNewOrdering=Ordering.usingToString().reverse().onResultOf(new Function<PeopleNew, Comparable>() {
+            @Nullable
+            @Override
+            public Comparable apply(@Nullable PeopleNew peopleNew) {
+                return peopleNew.getAge();
+            }
+        });
 
 
+        System.out.println("------------");
+        for (PeopleNew peopleNew:peopleNewOrdering.sortedCopy(peopleNewList)){
+            System.out.println(peopleNew.toString());
+        }
+
+        // ------------------------------------------
+        List<Integer>  integers= Arrays.asList(1,5,8,9,2,3,1,7);
+        // nullsFirst() 把null排在最前面
+        Collections.sort(integers,Ordering.natural().nullsFirst());
+        for (int i=0;i<integers.size();i++){
+            System.out.println(integers.get(i));
+        }
+
+        System.out.println("最大值："+Ordering.natural().max(integers));
+        System.out.println("最大的前N个值："+ Ordering.natural().greatestOf(integers,3).toString());
+
+        List<String> stringList=Lists.newArrayList("main","test","b","A");
+        Collections.sort(stringList,Ordering.usingToString());
+        for (String string:stringList){
+            System.out.println(string);
+        }
+
+        //List<PeopleNew> peopleNews = Lists.newArrayList(peopleNew1, peopleNew2, peopleNew3);
+        //Ordering<PeopleNew> orderWorker = Ordering.from(new PeopleNewIdComparator());
+        //Collections.sort(peopleNews, orderWorker);
 
     }
 
