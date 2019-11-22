@@ -1,12 +1,10 @@
 package com.supertrampai.guavasimplelearn;
 
-import com.google.common.cache.Cache;
-import com.google.common.cache.CacheBuilder;
-import com.google.common.cache.CacheLoader;
-import com.google.common.cache.LoadingCache;
+import com.google.common.cache.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
@@ -78,11 +76,23 @@ public class GuavaCacheDemo {
         System.gc();
         System.out.println("弱引用:"+stringStringCache1.getIfPresent("one"));
 
+        //removalListener删除监听事件
+        RemovalListener<String,String> removalListener =new RemovalListener<String, String>() {
+            @Override
+            public void onRemoval(RemovalNotification<String, String> removalNotification) {
+                System.out.println(removalNotification.getKey()+":"+removalNotification.getValue()+":已删除");
+            }
+        };
+
         // 显示清除  invalidateAll  invalidate:按照key清除
-        Cache<String,String> stringCache3 =CacheBuilder.newBuilder().build();
+        Cache<String,String> stringCache3 =CacheBuilder.newBuilder()
+                .removalListener(removalListener)
+                .build();
         stringCache3.put("1","v1");
         stringCache3.put("2","v2");
         stringCache3.put("3","v3");
+
+
 
         List<String> stringList= Arrays.asList("1","2");
         stringCache3.invalidateAll(stringList);
@@ -91,10 +101,82 @@ public class GuavaCacheDemo {
         System.out.println("2清除后:"+stringCache3.getIfPresent("2"));
         System.out.println("3清除后:"+stringCache3.getIfPresent("3"));
 
+        // 获取key时,当key存在时,返回key对应的记录,如果key不存在,guava则会其他callable中的call方法,call方法的返回值,将被存贮在key中,并且被get返回.
+        //如果多个线程访问一个同一个cache中的key,call方法只会加载一次
+        Cache<String ,String> stringCache4 =CacheBuilder.newBuilder()
+                .maximumSize(3)
+                .build();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Thread1");
+                try {
+                    String s = stringCache4.get("key", new Callable<String>() {
+                        @Override
+                        public String call() throws Exception {
+                            System.out.println("load1");
+                            return "线程一返回";
+                        }
+                    });
+                    System.out.println(s);
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Thread2");
+                try {
+                    String s = stringCache4.get("key", new Callable<String>() {
+                        @Override
+                        public String call() throws Exception {
+                            System.out.println("load1");
+                            return "线程二返回";
+                        }
+                    });
+                    System.out.println(s);
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+        // 统计信息 recordStats
+        Cache<String,String> stringCache5=CacheBuilder.newBuilder()
+                .recordStats()
+                .build();
+
+        stringCache5.put("1","v1");
+        stringCache5.put("2","v2");
+        stringCache5.put("3","v3");
+
+        stringCache5.getIfPresent("1");
+        stringCache5.getIfPresent("2");
+        stringCache5.getIfPresent("3");
+        stringCache5.getIfPresent("4");
+        stringCache5.getIfPresent("5");
+
+        //打印状态
+        System.out.println(stringCache5.stats());
+
+        // 使用cacheloader
+        LoadingCache<String,String> loadingCache = CacheBuilder.newBuilder()
+                .maximumSize(3)
+                .build(stringCacheLoader());//在构建时指定自动加载器
+        try {
+            loadingCache.get("1");
+            loadingCache.get("2");
+            loadingCache.get("3");
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 
     }
 
-    //1.创建Cacheloader
+    //1.创建Cacheloader 该接口是cache的子接口 区别在于,如果记录不存在,可以自动加载数据到缓存
     public static CacheLoader<String,PeopleNew> createCacheLoader(){
         return new CacheLoader<String, PeopleNew>() {
             @Override
@@ -103,6 +185,18 @@ public class GuavaCacheDemo {
             }
         };
     }
+    public static  CacheLoader<String,String> stringCacheLoader(){
+        CacheLoader<String,String> cacheLoader=new CacheLoader<String, String>() {
+            @Override
+            public String load(String s) throws Exception {
+                System.out.println(s+" is loaded from a cacheloader");
+                return s;
+            }
+
+        };
+        return cacheLoader;
+    }
+
     //2.创建cache
     public  static Cache<String,String> createCache(){
         return CacheBuilder.newBuilder()
